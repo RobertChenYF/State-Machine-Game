@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State : MonoBehaviour
+public abstract class State
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    protected EnemyStateManager manager; // The manager that contains the state machine.
+    
+    public abstract void Move(); // This is abstract so it MUST be implemented in derived classes.
+    public abstract void Appearence();
+
+    public virtual void Enter() {
+       
+    } // Virtual so can be overriden in derived classes.
+    public virtual void Leave() { 
+    
+    
     }
 
-    // Update is called once per frame
-    void Update()
+    public State(EnemyStateManager theManager) // Constructor that takes an argument.
     {
-        
+        manager = theManager;
     }
+
 }

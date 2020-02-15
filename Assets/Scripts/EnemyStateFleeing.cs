@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateSeeking : State
+public class EnemyStateFleeing : State
 {
-    public EnemyStateSeeking(EnemyStateManager theManager) : base(theManager)
+    public EnemyStateFleeing(EnemyStateManager theManager) : base(theManager)
     {
 
     }
+    private float timer;
+    
 
-    private float timer = 5;
     public override void Move()
     {
-
-        manager.TrackPlayer();
-        Debug.Log("track player");
-        if (timer <= 0)
+        //runaway
+        manager.FleePlayer();
+        if (timer < 0)
         {
             manager.ChangeState(new EnemyStateWandering(manager));
         }
@@ -24,18 +24,24 @@ public class EnemyStateSeeking : State
 
     public override void Appearence()
     {
-        
+        if (timer > 1) {
+            manager.ChangeColor(new Color(0, 1, 0)); }
+        else
+        {
+            manager.ChangeColor(new Color(1, 1, 0));
+        }
     }
 
     public override void Enter()
-    {
+    {   
+        timer = 5;
         base.Enter();
-        manager.ChangeColor(new Color(1,0,0));
     }
+
     public override void Leave()
     {
+        
         base.Leave();
-        timer = 5;
     }
 
 }
