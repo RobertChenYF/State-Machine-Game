@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyStateManager : MonoBehaviour
 {
     public BoxCollider2D detection;
-    
+
     public PolygonCollider2D body;
     protected GameObject player;
     protected CircleCollider2D playerCollider;
@@ -19,7 +19,7 @@ public class EnemyStateManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerCollider = player.GetComponent<CircleCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        
+
         ChangeState(new EnemyStateWandering(this));
     }
 
@@ -29,6 +29,7 @@ public class EnemyStateManager : MonoBehaviour
         currentState.Move();
         currentState.Appearence();
         rigidbodyOfEnemy.velocity = transform.up * velocity;
+
     }
 
 
@@ -49,7 +50,7 @@ public class EnemyStateManager : MonoBehaviour
 
     public void RotateDirection(float angle)
     {
-        transform.Rotate(0,0, angle, Space.Self);
+        transform.Rotate(0, 0, angle, Space.Self);
     }
     public void ChangeColor(Color color)
     {
@@ -68,9 +69,10 @@ public class EnemyStateManager : MonoBehaviour
         transform.up = transform.position - player.transform.position;
     }
 
-    public State getCurrentState()
+    public string ReturnCurrentState()
     {
-        return currentState;
+        return currentState.ToString();
     }
-    
 }
+    
+
