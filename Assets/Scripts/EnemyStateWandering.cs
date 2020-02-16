@@ -34,7 +34,7 @@ public class EnemyStateWandering : State
         {
             manager.ChangeDirection(new Vector3(0,0,0));
             timerForChangeDirection = 1;
-            Debug.Log("wall");
+           // Debug.Log("wall");
         }
         
         timerForChangeDirection -= Time.deltaTime;

@@ -6,36 +6,46 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float velocity;
-    public Image heart;
-    public int health = 3;
+    private Image heart;
+    public static int health = 3;
+    public Rigidbody2D player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        heart = GameObject.Find("heart").GetComponent<Image>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
+        //Debug.Log(health);
         heart.fillAmount = health/3.0f;
 
         if (Input.GetAxis("Horizontal") > 0)
         {
-            transform.position += new Vector3(velocity*Time.deltaTime, 0, 0);
+            player.velocity = new Vector2(velocity, player.velocity.y);
+
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
-            transform.position += new Vector3(-velocity * Time.deltaTime, 0, 0);
+            player.velocity = new Vector2(-velocity, player.velocity.y);
+        }
+        else
+        {
+            player.velocity = new Vector2(0, player.velocity.y);
         }
         if (Input.GetAxis("Vertical") > 0)
         {
-            transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
+            player.velocity = new Vector2(player.velocity.x, velocity);
         }
         else if (Input.GetAxis("Vertical")<0)
         {
-            transform.position += new Vector3(0, -velocity * Time.deltaTime, 0);
+            player.velocity = new Vector2(player.velocity.x, -velocity);
+        }
+        else
+        {
+            player.velocity = new Vector2(player.velocity.x ,0);
         }
 
        

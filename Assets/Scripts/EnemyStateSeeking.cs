@@ -14,7 +14,7 @@ public class EnemyStateSeeking : State
     {
 
         manager.TrackPlayer();
-        Debug.Log("track player");
+        //Debug.Log("track player");
         if (timer <= 0)
         {
             manager.ChangeState(new EnemyStateWandering(manager));
