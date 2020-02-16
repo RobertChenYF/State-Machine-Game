@@ -1,1 +1,2 @@
 Heart sprite from https://opengameart.org/content/heart-pixel-art
+Enemy and Player sprites from https://opengameart.org/content/space-shooter-redux
